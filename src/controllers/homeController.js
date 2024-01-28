@@ -186,8 +186,14 @@ let postBookingDoctorPageWithoutFiles = async (req, res) => {
         item.statusId = statusNewId;
         item.historyBreath = req.body.breath;
         item.moreInfo = req.body.extraOldForms;
-        if (item.places === 'none') item.placeId = 0;
-        item.placeId = item.places;
+        if (item.places === 'none') 
+        {
+            item.placeId = 0;
+        }
+        else {
+            item.placeId = item.places;
+        }
+        
         item.createdAt = Date.now();
 
         let patient = await patientService.createNewPatient(item);
